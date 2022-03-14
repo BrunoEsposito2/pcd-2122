@@ -13,6 +13,11 @@ public class Worker extends Thread {
 	
 	public void run(){
 		for (int i = 0; i < ntimes; i++){
+			/* Oppure: usare il synchronized DI COUNTER solo qui
+			 * 
+			 * synchronized (counter) {
+				counter.inc();
+			}*/
 			counter.inc();
 		}
 	}
