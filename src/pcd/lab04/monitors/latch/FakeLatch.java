@@ -12,11 +12,16 @@ public class FakeLatch implements Latch {
 	}
 	
 	@Override
-	public void await() throws InterruptedException {		
+	public synchronized void await() throws InterruptedException {	
+		while (count > 0)
+			wait();
 	}
 
 	@Override
-	public void countDown() {		
+	public synchronized void countDown() {	
+		count--;
+		if (count == 0) 
+			notifyAll();
 	}
 
 	
