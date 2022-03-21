@@ -1,12 +1,15 @@
 package pcd.lab01.step04;
 
-public class Steo04_Parallel {
+public class Step04_Sequential {
 
 	public static void main(String[] args) throws Exception {
+		
+		/* square matrix */
 		int size = 1000;
-		int n = size; 
-		int k = size; 
-		int m = size; 
+		
+		int n = size; /* num rows mat A */
+		int k = size; /* num columns mat A = num rows mat B */
+		int m = size; /* nun columns mat B */
 		
 		boolean debugging = false;
 
@@ -33,15 +36,11 @@ public class Steo04_Parallel {
 		System.out.println("Initialising done.");
 		System.out.println("Computing matmul...");
 
-
-		int nWorkers =  Runtime.getRuntime().availableProcessors() + 1;
-		MatMulConcurLib.init(nWorkers);
-				
 		Chrono cron = new Chrono();
 		cron.start();
-		Mat matC = MatMulConcurLib.matmul(matA, matB);
+		Mat matC = Mat.mul(matA, matB);
 		cron.stop();
-						
+		
 		System.out.println("Computing matmul done.");
 
 		if (debugging){
